@@ -23,16 +23,19 @@ class Welcome extends Application
 		$authors = array ();
 		foreach ($source as $record)
 		{
-			$authors[] = array ('who' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
+			$authors[] = array ('who' => $record['who'], 'what' => $record['what'], 'mug' => $record['mug'], 'href' => $record['where']);
 		}
 		$this->data['authors'] = $authors;
 
-		// Displays random quote at the bottom of the page
+		// Displays random quote 
                 $this->random();
 
 		$this->render();
 	}
         
+        /**
+	 * Displays a random quote from the authors
+	 */
         public function random()
 	{
             $this->data['pagebody'] = 'homepage';
@@ -43,8 +46,8 @@ class Welcome extends Application
             {
 		$authors[] = array ('who' => $record['who'], 'what' => $record['what'], 'mug' => $record['mug'], 'where' => $record['where'], 'what' => $record['what']);
             }
-                
-            $this->data['author'] = $authors[rand(1,6)]['what'];
+            
+            echo $authors[rand(1,6)]['what'];
 	}
 
 }
