@@ -27,7 +27,24 @@ class Welcome extends Application
 		}
 		$this->data['authors'] = $authors;
 
+		// Displays random quote at the bottom of the page
+                $this->random();
+
 		$this->render();
+	}
+        
+        public function random()
+	{
+            $this->data['pagebody'] = 'homepage';
+
+            $source = $this->quotes->all();
+            $authors = array ();
+            foreach ($source as $record)
+            {
+		$authors[] = array ('who' => $record['who'], 'what' => $record['what'], 'mug' => $record['mug'], 'where' => $record['where'], 'what' => $record['what']);
+            }
+                
+            $this->data['author'] = $authors[rand(1,6)]['what'];
 	}
 
 }
